@@ -16,7 +16,7 @@ void ppm_write_to_file(int width, int height, u_char* data, char *name);
 // Read the image contained in plain RGB ppm file <file>
 // into <data> and set <width> and <height> accordingly
 // Warning: data is malloc_ed, don't forget to free it
-void ppm_read_from_file(int *width, int *height, u_char** data, FILE* file);
+void ppm_read_from_file(int *width, int *height, u_char** data, char *name);
 
 // Desaturate (transform to B&W) <image> (of size <width> * <height>)
 void ppm_desaturate(u_char* image, int width, int height);
@@ -38,9 +38,7 @@ int main(int argc, char* argv[])
   u_char* image = NULL;
   int width;
   int height;
-  FILE* ppm_input = fopen("gargouille.ppm", "rb");
-  ppm_read_from_file(&width, &height, &image, ppm_input);
-  fclose(ppm_input);
+  ppm_read_from_file(&width, &height, &image, "gargouille.ppm");
 
 
   //--------------------------------------------------------------------------
@@ -106,8 +104,11 @@ void ppm_write_to_file(int width, int height, u_char* data, char *name)
   fclose(file);
 }
 
-void ppm_read_from_file(int *width, int *height, u_char** data, FILE* file)
+void ppm_read_from_file(int *width, int *height, u_char** data, char *name)
 {
+  //open the file
+  FILE  *file=fopen(name,"rb");
+
   // Read file header
   fscanf(file, "P6\n%d %d\n255\n", width, height);
 
@@ -116,6 +117,9 @@ void ppm_read_from_file(int *width, int *height, u_char** data, FILE* file)
 
   // Read the actual image data
   fread(*data, 3, (*width) * (*height), file);
+
+  //close the file
+  fclose(file);
 }
 
 void ppm_desaturate(u_char* image, int width, int height)
