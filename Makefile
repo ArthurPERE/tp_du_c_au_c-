@@ -1,10 +1,14 @@
 all: ppm.out
 
-ppm.out: ppm.c modification_and_write_image.o read_image.o
-	gcc -o ppm.out ppm.c modification_and_write_image.o read_image.o
+ppm.out: ppm.cpp modification_and_write_image.o read_image.o
+	g++ -o ppm.out ppm.cpp modification_and_write_image.o read_image.o
 
-modification_image.o: modification_and_write_image.c modification_and_write_image.h
-	gcc -o modification_and_write_image.o modification_and_write_image.c -c
+modification_image.o: modification_and_write_image.cpp modification_and_write_image.h
+	g++ -o modification_and_write_image.o modification_and_write_image.cpp -c
 
-write_and_read_image.o: read_image.c read_image.h
-	gcc -o read_image.o read_image.c -c
+read_image.o: read_image.cpp read_image.h
+	g++ -o read_image.o read_image.cpp -c
+
+
+clear:
+	rm *.o

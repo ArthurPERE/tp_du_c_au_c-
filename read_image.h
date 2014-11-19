@@ -12,7 +12,7 @@ typedef struct
 // Read the image contained in plain RGB ppm file <file>
 // into <data> and set <width> and <height> accordingly
 // Warning: data is malloc_ed, don't forget to free it
-old* ppm_read_from_file(char *name);
+old* ppm_read_from_file(const char *name);
 
 
 #endif
