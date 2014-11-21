@@ -36,11 +36,11 @@ newimg* ppm_desaturate(u_char* image, int width, int height)
   return newimage;
 }
 
-newimg* ppm_shrink(u_char** image, int *width, int *height, int factor)
+newimg* ppm_shrink(u_char** image, int& width, int& height, int factor)
 {
   // Compute new image size and allocate memory for the new image
-  int new_width   = (*width) / factor;
-  int new_height  = (*height) / factor;
+  int new_width   = (width) / factor;
+  int new_height  = (height) / factor;
   u_char* new_image = new u_char[3 * new_width * new_height];
 
   newimg * newimage=new newimg;
@@ -68,7 +68,7 @@ newimg* ppm_shrink(u_char** image, int *width, int *height, int factor)
       // model image corresponding to the pixel we are creating
       int x0 = x * factor;
       int y0 = y * factor;
-      int i0 = 3 * (y0 * (*width) + x0);
+      int i0 = 3 * (y0 * width + x0);
 
       // Compute RGB values for the new pixel
       int dx, dy;
@@ -78,7 +78,7 @@ newimg* ppm_shrink(u_char** image, int *width, int *height, int factor)
         {
           // Compute the offset of the current pixel (in the model image)
           // with regard to the top-left pixel of the current "set of pixels"
-          int delta_i = 3 * (dy * (*width) + dx);
+          int delta_i = 3 * (dy * width + dx);
 
           // Accumulate RGB values
           red   += (*image)[i0+delta_i];

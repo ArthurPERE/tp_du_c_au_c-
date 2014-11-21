@@ -1,4 +1,3 @@
-
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,7 +50,7 @@ int main(int argc, char* argv[])
   memcpy(image_small, image, 3 * width_small * height_small * sizeof(*image_small));
 
   // Shrink image_small size 2-fold
-  newimg * newimage1=ppm_shrink(&image_small, &width_small, &height_small, 2);
+  newimg * newimage1=ppm_shrink(&image_small, width_small, height_small, 2);
 
   // Write the desaturated image into "gargouille_small.ppm"
   ppm_write_to_file(newimage1, "gargouille_small.ppm");
