@@ -5,9 +5,9 @@
 //struct for the new image
 typedef struct
 {
-  int width;
-  int height;
-  u_char *data;
+int width;
+int height;
+u_char *data;
 }newimg;
 
 // Desaturate (transform to B&W) <image> (of size <width> * <height>)
@@ -21,4 +21,5 @@ newimg* ppm_shrink(u_char** image, int& width, int& height, int factor);
 // into <data> and set <width> and <height> accordingly
 // Warning: data is malloc_ed, don't forget to free it
 void ppm_write_to_file(newimg* newimage, const char *name);
+
 #endif
