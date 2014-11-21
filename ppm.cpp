@@ -64,5 +64,7 @@ int main(int argc, char* argv[])
   delete(newimage1->data);
   delete(newimage1);
   delete(image_small);
+
+  return 0;
  
 }

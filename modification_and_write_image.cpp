@@ -108,7 +108,7 @@ newimg* ppm_shrink(u_char** image, int *width, int *height, int factor)
 }
 
 
-void ppm_write_to_file(newimg* newimage, char *name)
+void ppm_write_to_file(newimg* newimage, const char *name)
 {
   //open the file
   FILE *file=fopen(name,"wb");
